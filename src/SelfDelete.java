@@ -20,25 +20,6 @@ public class SelfDelete {
 		UNIX_COMMAND = String.format("rm \"%s\"", FULL_PATH);
 	}
 	
-	/**
-	 * Gets the full path to the running JAR file. This includes the JAR file
-	 * name and extension
-	 * 
-	 * @return the full path with file name and extension
-	 */
-	private static String getJarFilePath() {
-		try {
-			return new File(SelfDelete.class
-					.getProtectionDomain()
-					.getCodeSource()
-					.getLocation()
-				    .toURI()).getPath();
-		} catch (URISyntaxException e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
-	
 	public static void main(String[] args) throws IOException {
 		System.out.println("Operating System: " + System.getProperty("os.name"));
 		System.out.println("JAR File Path: " + FULL_PATH);
@@ -56,6 +37,25 @@ public class SelfDelete {
 			System.err.println("Error: Unknown operating system");
 			System.exit(1);
 		}
+	}
+	
+	/**
+	 * Gets the full path to the running JAR file. This includes the JAR file
+	 * name and extension
+	 * 
+	 * @return the full path with file name and extension
+	 */
+	private static String getJarFilePath() {
+		try {
+			return new File(SelfDelete.class
+					.getProtectionDomain()
+					.getCodeSource()
+					.getLocation()
+				    .toURI()).getPath();
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
 	/**
