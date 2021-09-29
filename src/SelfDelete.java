@@ -76,7 +76,7 @@ public class SelfDelete {
 	/**
 	 * Determines if the running operating system is Windows.
 	 * 
-	 * @return true if the operating system is Windows; false otherwise
+	 * @return true if the operating system is Windows; false otherwise.
 	 */
 	private static boolean isWindows() {
 		return OS.toLowerCase().contains("windows");
@@ -85,7 +85,7 @@ public class SelfDelete {
 	/**
 	 * Determines if the running operating system is macOS.
 	 * 
-	 * @return true if the operating system is macOS; false otherwise
+	 * @return true if the operating system is macOS; false otherwise.
 	 */
 	private static boolean isMac() {
 		return OS.toLowerCase().contains("mac");
@@ -94,7 +94,7 @@ public class SelfDelete {
 	/**
 	 * Determines if the running operating system is UNIX-based.
 	 * 
-	 * @return true if the operating system is UNIX-like; false otherwise
+	 * @return true if the operating system is UNIX-like; false otherwise.
 	 */
 	private static boolean isUnix() {
         return OS.contains("nix") || OS.contains("nux") || OS.contains("aix");
