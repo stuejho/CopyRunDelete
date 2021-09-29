@@ -5,7 +5,7 @@ import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.util.Random;
 
-public class SelfDelete {
+public class CopyRunDelete {
 	
 	private static final String OS;
 	private static final String FULL_PATH;
@@ -62,7 +62,7 @@ public class SelfDelete {
 	 */
 	private static String getJarFilePath() {
 		try {
-			return new File(SelfDelete.class
+			return new File(CopyRunDelete.class
 					.getProtectionDomain()
 					.getCodeSource()
 					.getLocation()
