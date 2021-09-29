@@ -23,7 +23,7 @@ public class SelfDelete {
 	//     We use `&1` instead of `1` since the single value `1` would be 
 	//     interpreted as a file named one, not the file descriptor
 	private static final String OS;
-	private static final String FILE_PATH;
+	private static final String FULL_PATH;
 	private static final String WINDOWS_COMMAND;
 	private static final String MAC_COMMAND;
 	private static final String UNIX_COMMAND;
@@ -32,10 +32,10 @@ public class SelfDelete {
 	static {
 		// Use System to get the name of the user operating system
 		OS = System.getProperty("os.name").toLowerCase();
-		FILE_PATH = getJarFilePath();
-		WINDOWS_COMMAND = String.format("cmd /c ping localhost -n 2 && del \"%s\"", FILE_PATH);
-		MAC_COMMAND = String.format("bash -c ping localhost -c 4 && rm \"%s\"", FILE_PATH);
-		UNIX_COMMAND = String.format("bash -c ping localhost -c 4 && rm \"%s\"", FILE_PATH);
+		FULL_PATH = getJarFilePath();
+		WINDOWS_COMMAND = String.format("ping localhost -n 2 && del \"%s\"", FULL_PATH);
+		MAC_COMMAND = String.format("rm \"%s\"", FULL_PATH);
+		UNIX_COMMAND = String.format("rm \"%s\"", FULL_PATH);
 	}
 	
 	/**
@@ -59,23 +59,21 @@ public class SelfDelete {
 	
 	public static void main(String[] args) throws IOException {
 		System.out.println("Operating System: " + System.getProperty("os.name"));
-		System.out.println("JAR File Path: " + FILE_PATH);
+		System.out.println("JAR File Path: " + FULL_PATH);
 		
-		String command = "";
 		if (isWindows()) {
-			command = WINDOWS_COMMAND;
+			new ProcessBuilder("cmd", "/c", WINDOWS_COMMAND).start();
 		}
 		else if (isMac()) {
-			command = MAC_COMMAND;
+			new ProcessBuilder("bash", "-c", MAC_COMMAND).start();
 		}
 		else if (isUnix()) {
-			command = UNIX_COMMAND;
+			new ProcessBuilder("bash", "-c", UNIX_COMMAND).start();
 		}
 		else {
 			System.err.println("Error: Unknown operating system");
 			System.exit(1);
 		}
-		Runtime.getRuntime().exec(command);
 	}
 	
 	/**
