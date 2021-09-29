@@ -4,24 +4,6 @@ import java.net.URISyntaxException;
 
 public class SelfDelete {
 
-	// If anyone is reading this, there's a lot to unpack for WINDOWS_COMMAND:
-	// - `cmd /c` basically means to use cmd.exe and run a command that will
-	//   terminate and return control back to the caller
-	// - `ping localhost -n 2` is a classic way of occupying the system for
-	//   2 seconds. Basically, the computer pings itself twice and each ping
-	//   takes about 1 second.
-	// - `>` is the output redirection symbol. In this case, we don't want any
-	//   Windows command line output to show up, so we redirect it to `nul`.
-	//   This basically means nothing will show up. As Windows-specific example,
-	//   try running `dir` in cmd.exe. Then try `dir > nul`.
-	// - `2>&1` can be thought of as 3 parts:
-	//   * `>` means redirect output
-	//   * `2` means use file descriptor 2 STDERR (where errors are shown)
-	//     as the source of redirection
-	//   * `&1` means use file descriptor 1 (STDOUT) which has been set to nul
-	//     as the target of redirection
-	//     We use `&1` instead of `1` since the single value `1` would be 
-	//     interpreted as a file named one, not the file descriptor
 	private static final String OS;
 	private static final String FULL_PATH;
 	private static final String WINDOWS_COMMAND;
