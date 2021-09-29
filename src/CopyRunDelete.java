@@ -108,16 +108,20 @@ public class CopyRunDelete {
 	 * @throws IOException thrown when an I/O exception occurs.
 	 */
 	private static void makeAndRunSubJar(String nextTtlStr) throws IOException {
+		// Get jar file to use in generating subdirectory/jar copy
 		File jar = new File(FULL_PATH);
 		System.out.println(jar.getName());
 		
+		// Create subdirectory
 		String subDirPath = jar.getParent() + File.separator + SUB_DIR_NAME;
 		File subDir = new File(subDirPath);
 		subDir.mkdir();
 		
+		// Create file to copy into
 		String subDirJarPath = subDirPath + File.separator + jar.getName();
 		File subDirJar = new File(subDirJarPath);
 		subDirJar.createNewFile();
+		
 		// Copy JAR into subdirectory
 		Files.copy(jar.toPath(), subDirJar.toPath(), 
 				StandardCopyOption.REPLACE_EXISTING);
