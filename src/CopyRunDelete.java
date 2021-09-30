@@ -19,7 +19,8 @@ public class CopyRunDelete {
 		// Use System to get the name of the user operating system
 		OS = System.getProperty("os.name").toLowerCase();
 		FULL_PATH = getJarFilePath();
-		WINDOWS_COMMAND = String.format("ping localhost -n 2 && del \"%s\"", FULL_PATH);
+		WINDOWS_COMMAND = String.format("ping localhost -n 2"
+				+ " && del \"%s\"", FULL_PATH);
 		MAC_COMMAND = String.format("rm \"%s\"", FULL_PATH);
 		UNIX_COMMAND = String.format("rm \"%s\"", FULL_PATH);
 		SUB_DIR_NAME = "iLUVjava";
