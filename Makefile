@@ -13,7 +13,7 @@ VPATH=src/
 .SUFFIXES: .java .class
 
 all: $(addprefix $(BIN_DIR), $(CLASSES))
-	$(JAR) $(JAROPTIONS) $(BIN_DIR)$(ENTRY).jar $(ENTRY) -C $(BIN_DIR) $(ENTRY).class
+	$(JAR) $(JAROPTIONS) $(BIN_DIR)$(ENTRY).jar $(ENTRY) -C $(BIN_DIR) $(CLASSES)
 
 $(BIN_DIR)%.class: %.java
 	$(JAVAC) $(JFLAGS) $< -d $(BIN_DIR)
